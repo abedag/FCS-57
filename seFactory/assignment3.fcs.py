@@ -50,3 +50,21 @@ print("")
 print("Exercise 4:")
 print("")
 
+def add_to_sort(integers, int1_4):
+
+    for min in range(0, len(integers)):
+        if int1_4 <= integers[min]:
+
+            integers.insert(min, int1_4)
+            return integers
+
+    integers.appeend(int1_4)
+    return integers
+
+print(add_to_sort([1,2,4,6,32,45,76,99,110] , 55))    
+
+
+print("")
+print("Exercise 3:")
+print("")
+
