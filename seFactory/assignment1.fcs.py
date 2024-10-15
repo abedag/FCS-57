@@ -1,6 +1,7 @@
 print("Assignment 1")
 
 print("Exercise 1:")
+print("")
 
 # Ask for student's age
 age = float(input("Enter your age:"))
@@ -21,6 +22,7 @@ if age > 18:
 else:
     print("Insufficient Age :(")
 
+print("")
 print("Exercise 2:")
 print("")
 
