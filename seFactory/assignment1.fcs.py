@@ -1,4 +1,6 @@
-# FCS Selection Criteria
+print("Assignment 1")
+
+print("Exercise 1:")
 
 # Ask for student's age
 age = float(input("Enter your age:"))
@@ -18,3 +20,13 @@ if age > 18:
         print("Foreign Country")
 else:
     print("Insufficient Age :(")
+
+print("Exercise 2:")
+print("")
+
+n = int(input("Enter a random number: "))
+
+if n%2 == 0:
+    print(f"{n} is an even number")
+else:
+    print(f"{n} is an odd number")
