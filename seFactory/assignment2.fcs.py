@@ -1,4 +1,5 @@
 print("Assignment 2")
+print("")
 
 
 print("Exercise 1: ")
