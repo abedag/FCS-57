@@ -1,33 +1,30 @@
 print("Assignment 3")
 print("")
 
-# print("Exercise 1:")
-# print("")
+print("Exercise 1:")
+print("")
 
 
-# def recursive_binarySearch(grades, num1, start, end):
-   
-#     start = 0
-#     end = len(grades) - 1 
-
-#     if start > end:
-#         return False
+def recursive_binarySearch(grades, num1, start, end):
     
-#     mid = (start + end)//2
-
-#     if grades[mid] == num1:
-#         return True
+    if start > end:
+        return False
     
-#     elif grades[mid] > num1:
-#         return recursive_binarySearch(grades, num1, start, mid - 1)
+    mid = (start + end)//2
 
-#     else:
-#         return recursive_binarySearch(grades, num1, mid + 1, end)
+    if grades[mid] == num1:
+        return True
+    
+    elif grades[mid] > num1:
+        return recursive_binarySearch(grades, num1, start, mid - 1)
 
-# grades = [5 ,25 ,39 ,56 ,67 ,75 ,90]
+    else:
+        return recursive_binarySearch(grades, num1, mid + 1, end)
 
-# print(recursive_binarySearch(grades, 100, 5, 90))
-# print(recursive_binarySearch(grades, 75, 5, 90))
+grades = [5 ,25 ,39 ,56 ,67 ,75 ,90]
+
+print(recursive_binarySearch(grades, 100, 0, len(grades) - 1))
+print(recursive_binarySearch(grades, 75, 0, len(grades) - 1)) 
 
 print("")
 print("Exercise 2:")
