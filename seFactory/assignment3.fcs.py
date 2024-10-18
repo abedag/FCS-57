@@ -59,6 +59,7 @@ def add_to_sort(integers, int1_4):
     return integers
 
 print(add_to_sort([1,2,4,6,32,45,76,99,110] , 55))    
+print(add_to_sort([1,2,4,6,32,45,76,99,110,120,122,140] , 460))    
 
 
 print("")
