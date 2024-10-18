@@ -115,11 +115,20 @@ def handleReceipt():
         item_total = quantity * item_price
         receipt.append({"name": item_name, "quantity": quantity, "price": item_price, "total_price": item_total})
 
-        add_item = input("Would you like to add another item?").strip()
-        if add_item.lower() == "no":
-            printReceipt(receipt)
-            return
+
+        while True:
+            add_item = input("Would you like to add another item?").strip()
+
+            if add_item.lower() == "yes":
+                break
+
+            elif add_item.lower() == "no":
+                printReceipt(receipt)
+                return
         
+            else: 
+                 print("This option is unavailable. Please try again.")
+
             
 def printReceipt(receipt):
     total_amount = 0
