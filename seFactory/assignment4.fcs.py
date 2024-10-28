@@ -6,4 +6,4 @@ print("")
 
 class Matchingpairs:
     def __init__(self,pairs):
-        self.match_pairs = ["(", ")", "{", "}", "[", "]"]
+        self.match_pairs = {"(" : ")", "{" : "}", "[" : "]"}
