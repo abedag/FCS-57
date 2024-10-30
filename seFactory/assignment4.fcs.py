@@ -109,3 +109,62 @@ print(m.decode("SIVLE ****** DAED TNSI ***"))
 
 print("\nLinked Lists:\n")
 
+class Node:
+    def __init__(self,info,n):
+        self.info = info
+        self.next = n
+    
+class LL:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+
+    def addToHead(self,val):
+        if self.size == 0:
+            n = Node(val,None)
+            self.head = n
+            self.tail = n
+            self.size += 1
+        else:
+            n = Node(val,self.head)
+            self.head = n
+            self.size += 1
+
+    def deleteAtL(self, location):
+            if location < 0 or self.head == None:
+                return False
+            
+            if location == 0:
+                self.head = self.head.next
+                return
+
+            temp = self.head
+            for i in range(location - 1):
+                if temp.next == None:
+                    return False
+                temp = temp.next
+
+            if temp.next is None:
+                return False
+
+            temp.next = temp.next.next
+
+    def printLL(self):
+        tempo=self.head
+        while tempo != None:
+            print(tempo.info," -> ",end = " ")
+            tempo=tempo.next
+        print()
+
+l = LL()
+l.addToHead(0)
+l.addToHead(11)
+l.addToHead(76)
+l.addToHead(56)
+l.addToHead(12)
+
+l.deleteAtL(1)
+
+l.printLL()
+
