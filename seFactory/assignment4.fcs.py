@@ -107,5 +107,5 @@ m = MIB()
 print(m.decode("SIVLE ****** DAED TNSI ***"))
 
 
-print("\nQueues:\n")
+print("\nLinked Lists:\n")
 
