@@ -1,6 +1,3 @@
-from typing import Any
-
-
 print("Assignment 4:\n")
 print("Stacks and Queues:\n")
 
