@@ -80,6 +80,7 @@ class DriverMenu:
             
             self.id = self.drivers[self.name]["ID"]
             print(f"{self.name.title()} with {self.city.title()} start city and ID {self.id} is saved.")
+            print(f"You'll get a message containing {self.name.title()}'s number")
             break
         
 
@@ -148,16 +149,42 @@ class CityMenu:
                 print("Matching cities:\n", ", ".join(matching_cities))
                 return DriverMenu().driverInp()
             else:
-                print("City or cities are unavailable. Try Again.")
+                print("City or cities entered are unavailable. Try Again.")
 
 
     def cityNeib(self):
-        pass
+        self.neibcity = {
+            "akkar": {"n": "jbeil"},
+            "beirut": {"n": "akkar"},
+            "jbeil": {"n": "akkar, beirut"},
+        }
+        self.empt = "saida"
+        while True:
+            self.entnei = input("Enter the city to see its neighboring city or cities:").lower().strip()
+            if self.entnei in self.neibcity:
+                print(f"The neighboring city or cities are {self.neibcity[self.entnei]["n"]}")
+                return DriverMenu().driverInp()
+            elif self.entnei == self.empt:
+                print("No neighboring cities for saida")
+                return menu()
+            else:
+                print("City entered is unavailable.Try Again")
 
 
-    def delevToCity():
-        pass
-
+    def delevToCity(self):
+        self.driving_to_city =  {           
+            "jbeil" : {"name": "Mohammad Issa, Elias Skafi, Kosay Azzam, Hassan Hijazi"},
+            "saida" : {"name": "Ahmad Salem, Abed Dahoud, Kosay Azzam, Hassan Hijazi"},
+            "beirut" : {"name": "Kosay Azzam, Hassan Hijazi, Ahmad Salem, Abed Dahoud"},
+            "akkar": {"name": "Bassam Jaber, Mohammad Issa, Elias Skafi"},
+        } 
+        while True:
+            self.e = input("Enter a city to see the drivers reaching it:").lower().strip()
+            if self.e in self.driving_to_city:
+                print(f"Drivers reaching {self.e} are {self.driving_to_city[self.e]["name"]}")
+                return DriverMenu().addDriver()
+            else:
+                print("City entered is unavailabe.Try Again")
 
 
 
