@@ -21,78 +21,75 @@ def menu():
 
 class DriverMenu:
     def __init__(self):
-        self.drivers = {
-            "abed dahoud" : {"ID": "001", "City": "Saida"},
-            "ahmad salem" : {"ID": "002", "City": "Saida"},
-            "bassam jaber": {"ID": "003", "City": "Akkar"},
-            "elias skafi" : {"ID": "004", "City": "Jbeil"},
-            "hassan hijazi" : {"ID": "005", "City": "Beirut"},
-            "kosay azzam" : {"ID": "006","City": "Beirut"},
-            "mohammad issa" : {"ID": "007", "City": "Jbeil"},
-        } 
-
+        self.drivers = [
+            {"Name": "Charles Leclerc", "ID": "001", "City": "Saida"},
+            {"Name": "Max Verstappen", "ID": "002", "City": "Akkar"},
+            {"Name": "Lando Norris", "ID": "003", "City": "Jbeil"},
+        ]
+        self.cities = ["saida", "akkar", "jbeil", "beirut"]
 
     def driverInp(self):
         print(
-        "\n1. View all the drivers\n"
-        "2. Add a driver\n"
-        "3. Check similar drivers\n"
-        "4. Go back to the main menu\n")
+            "\n1. View all the drivers\n"
+            "2. Add a driver\n"
+            "3. Check similar drivers\n"
+            "4. Go back to the main menu\n"
+        )
         while True:
-            self.d = int(input("Enter the number of the option you want:"))
-            if self.d == 1:
-                return self.viewDrivers()
-            elif self.d == 2:
-                return self.addDriver()
-            elif self.d == 3:
-                return self.checkSimilar()
-            elif self.d == 4:
-                return menu()
-            else:
-                print("Invalid input.Try Again")
+            try:
+                self.d = int(input("Enter the number of the option you want: "))
+                if self.d == 1:
+                    self.viewDrivers()
+                elif self.d == 2:
+                    self.addDriver()
+                elif self.d == 3:
+                    self.checkSimilar()
+                elif self.d == 4:
+                    print("Returning to main menu.")
+                    return menu()
+                else:
+                    print("Invalid input. Try Again.")
+            except ValueError:
+                print("Please enter a valid number.")
 
-
-    def viewDrivers(self):            
-        print("Name: Abed Dahoud, ID: 001, City: Saida\n"
-            "Name: Ahmad Salem, ID: 002, City: Saida\n"
-            "Name: Bassam Jaber, ID: 003, City: Akkar\n"
-            "Name: Elias Skafi, ID: 004, City: Jbeil\n"
-            "Name: Hassan Hijazi, ID: 005, City: Beirut\n"
-            "Name: Kosay Azzam, ID: 006, City: Beirut\n"
-            "Name: Mohammad Issa, ID: 007, City: Jbeil\n")
-        
-        self.addDriver()
-
+    def viewDrivers(self):  
+        print("\nAll Drivers:")          
+        for driver in self.drivers:
+            print(f"{driver['Name']}, {driver['ID']}, {driver['City']}")
 
     def addDriver(self):
         while True:
-            self.name = input("Enter the name of the driver you want:").strip().lower()
+            name = input("Enter the name of the driver: ").title().strip()
+            city = input("Enter the start city of the driver: ").lower().strip()
 
-            if self.name not in self.drivers:
-                print(f"{self.name} not found.Try Again")
-                continue
-            
-            self.city = input("Enter the start city of the chosen driver:").strip().lower()
-
-            if self.drivers[self.name]["City"].lower() != self.city:
-                print(f"{self.city} doesn't match the chosen driver. Try Again.")
-                continue
-            
-            self.id = self.drivers[self.name]["ID"]
-            print(f"{self.name.title()} with {self.city.title()} start city and ID {self.id} is saved.")
-            print(f"You'll get a message containing {self.name.title()}'s number")
-            break
-        
+            if city not in self.cities:
+                add_city = input(f"{city} is not in the database, would you like to add it? (yes/no): ").lower().strip()
+                if add_city == "no":
+                    print("City not added.")
+                elif add_city == "yes":
+                    self.cities.append(city)
+                    print(f"City '{city}' is added.")
+                    newid = "" + str(len(self.drivers) + 1).zfill(3)
+                    self.drivers.append({"Name": name, "ID": newid, "City": city})
+                    print(f"{name} is added with start city {city} and ID {newid}.")
+                    break
+                else:
+                    print("Invalid input. Try Again.")
+            else:
+                newid = "" + str(len(self.drivers) + 1).zfill(3)
+                self.drivers.append({"Name": name, "ID": newid, "City": city})
+                print(f"{name} is added with start city {city} and ID {newid}.")
+                break
 
     def checkSimilar(self):
-        self.same_city = input("Enter the city to see the drivers starting from it:").strip().lower()
-        matching_drivers = [name.title() for name, details in self.drivers.items() if details["City"].lower() == self.same_city]
+        print("\nDrivers Grouped by Start City:")
+        for city in self.cities:
+            drivers_in_city = [driver["Name"] for driver in self.drivers if driver["City"].lower() == city]
+            if drivers_in_city:
+                print(f"{city.capitalize()}: {', '.join(drivers_in_city)}")
+        return menu()
 
-        if matching_drivers:
-            print(f"Drivers starting from {self.same_city.title()}: {', '.join(matching_drivers)}")
-        else:
-            print("City not found. Try Again.")
-        return self.addDriver()
+
 
 class CityMenu:
     def __init__(self):
@@ -125,6 +122,7 @@ class CityMenu:
             elif self.c == 4:
                 return self.delevToCity()
             elif self.c == 5:
+                print("Returning to main menu.")
                 return menu()
             else:
                 print("Invalid input.Try Again")
@@ -182,10 +180,9 @@ class CityMenu:
             self.e = input("Enter a city to see the drivers reaching it:").lower().strip()
             if self.e in self.driving_to_city:
                 print(f"Drivers reaching {self.e} are {self.driving_to_city[self.e]["name"]}")
-                return DriverMenu().addDriver()
+                return 
             else:
                 print("City entered is unavailabe.Try Again")
-
 
 
 menu = menu()
