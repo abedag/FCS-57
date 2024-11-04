@@ -13,7 +13,7 @@ def menu():
             CityMenu().cityInp()
         elif mmenu == 3:
             print("System exited!")
-            break
+            exit()
         else:
             print("Invalid input.Try Again")
 
@@ -81,6 +81,7 @@ class DriverMenu:
                 self.drivers.append({"Name": name, "ID": newid, "City": city})
                 print(f"{name} is added with start city {city} and ID {newid}.")
                 exit()
+            break
         
 
     def checkSimilar(self):
