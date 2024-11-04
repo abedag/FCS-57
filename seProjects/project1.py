@@ -56,6 +56,7 @@ class DriverMenu:
         print("\nAll Drivers:")          
         for driver in self.drivers:
             print(f"{driver['Name']}, {driver['ID']}, {driver['City']}")
+        self.addDriver()
 
     def addDriver(self):
         while True:
@@ -72,14 +73,15 @@ class DriverMenu:
                     newid = "" + str(len(self.drivers) + 1).zfill(3)
                     self.drivers.append({"Name": name, "ID": newid, "City": city})
                     print(f"{name} is added with start city {city} and ID {newid}.")
-                    break
+                    exit()
                 else:
                     print("Invalid input. Try Again.")
             else:
                 newid = "" + str(len(self.drivers) + 1).zfill(3)
                 self.drivers.append({"Name": name, "ID": newid, "City": city})
                 print(f"{name} is added with start city {city} and ID {newid}.")
-                break
+                exit()
+        
 
     def checkSimilar(self):
         print("\nDrivers Grouped by Start City:")
@@ -94,14 +96,11 @@ class DriverMenu:
 class CityMenu:
     def __init__(self):
         self.cities = {
-            "jbeil" : {"ID": "007", "Name": "Mohammad Issa"},
-            "jbeil" : {"ID": "004", "Name": "Elias Skafi"},
-            "saida" : {"ID": "002", "Name": "Ahmad Salem"},
-            "saida" : {"ID": "001", "Name": "Abed Dahoud"},
-            "beirut" : {"ID": "006","Name": "Kosay Azzam"},
-            "beirut" : {"ID": "005", "Name": "Hassan Hijazi"},
-            "akkar": {"ID": "003", "Name": "Bassam Jaber"},
+            "saida" : {"ID": "001", "Name": "Charles Leclerc"},
+            "akkar" : {"ID": "002", "Name": "Max Verstappen"},
+            "jbeil" : {"ID": "003", "Name" : "Lando Norris"},
         } 
+        self.driving_to_city = {city: [info["Name"]] for city, info in self.cities.items()}
 
 
     def cityInp(self):
@@ -170,17 +169,14 @@ class CityMenu:
 
 
     def delevToCity(self):
-        self.driving_to_city =  {           
-            "jbeil" : {"name": "Mohammad Issa, Elias Skafi, Kosay Azzam, Hassan Hijazi"},
-            "saida" : {"name": "Ahmad Salem, Abed Dahoud, Kosay Azzam, Hassan Hijazi"},
-            "beirut" : {"name": "Kosay Azzam, Hassan Hijazi, Ahmad Salem, Abed Dahoud"},
-            "akkar": {"name": "Bassam Jaber, Mohammad Issa, Elias Skafi"},
-        } 
+
+
         while True:
             self.e = input("Enter a city to see the drivers reaching it:").lower().strip()
             if self.e in self.driving_to_city:
-                print(f"Drivers reaching {self.e} are {self.driving_to_city[self.e]["name"]}")
-                return 
+                drivers = ", ".join(self.driving_to_city[self.e])
+                print(f"Drivers reaching {self.e.capitalize()} are: {drivers}")
+                return menu()
             else:
                 print("City entered is unavailabe.Try Again")
 
