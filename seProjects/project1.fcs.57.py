@@ -7,8 +7,6 @@ def menu():
         mmenu = int(input("Hello! Please enter the number of the option you want:"))
         if  mmenu == 1:
             DriverMenu().driverInp()
-            return
-
         elif mmenu == 2:
             CityMenu().cityInp()
         elif mmenu == 3:
